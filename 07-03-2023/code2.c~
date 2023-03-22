@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define MAX  100
+struct User_data {
+	char Name[MAX];
+	int Roll_No;
+	float Sub1,Sub2,Sub3;
+};
+
+void main()
+{
+	struct User_data S1;
+	FILE *fp1;
+	fp1 = fopen("User_data.txt","r");
+	if(fp1 == NULL){
+		printf("Error Opening file\n");
+		exit(1);
+	}
+
+	while(fread(&S1,sizeof(struct User_data),1,fp1) != 0 )
+	{
+		printf("Ok");
+		printf("Name : %s\tRoll no: %d\n",S1.Name,S1.Roll_No);
+	}
+	fclose(fp1);
+}
